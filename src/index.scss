@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  padding: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -98px;
+  margin-left: -177px;
   font-family: 'Roboto', sans-serif;
 }
