@@ -5,7 +5,9 @@ import "./CalcButtonList.scss";
 class CalcButtonList extends Component {
     render() {
         return (
-            <div></div>
+            <div>
+                <CalcButton />
+            </div>
         )
     }
 }
