@@ -4,6 +4,13 @@ import CalcButtonList from "./CalcButtonList";
 import "./Calc.scss";
 
 class Calc extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      operations: []
+    };
+  }
+
   render() {
     return (
       <div className="calc__wrapper">
