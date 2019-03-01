@@ -1,46 +1,64 @@
 .calc__button {
-    width: 88.5px;
-    height: 88.5px;
-    background: #E8E8E8;
-    border: 2px solid #000000;
-    border-right: 1px solid #000000;
-    border-left: 1px solid #000000;
-    box-sizing: border-box;
-    font-style: normal;
-    font-weight: bold;
-    line-height: normal;
-    font-size: 48px;
-    cursor: pointer;
+  width: 88.5px;
+  height: 88.5px;
+  background: #e8e8e8;
+  border: 2px solid #000000;
+  border-right: 1px solid #000000;
+  border-left: 1px solid #000000;
+  box-sizing: border-box;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  font-size: 48px;
+  cursor: pointer;
 }
 
 .calc__button:first-child {
-    border-left: 2px solid #000000;
+  border-left: 2px solid #000000;
 }
 .calc__button:first-child:hover {
-    border-left: 2px solid #000000;
+  border-left: 2px solid #000000;
 }
 
 .calc__button:last-child {
-    border-right: 2px solid #000000;
+  border-right: 2px solid #000000;
 }
 
 .calc__button:last-child:hover {
-    border-right: 2px solid #000000;
+  border-right: 2px solid #000000;
 }
 
 .calc__button:hover {
-    background: #BABABA;
-    border: 2px solid #000000;
-    border-right: 1px solid #000000;
-    border-left: 1px solid #000000;
-    box-sizing: border-box;
+  background: #bababa;
+  border: 2px solid #000000;
+  border-right: 1px solid #000000;
+  border-left: 1px solid #000000;
+  box-sizing: border-box;
 }
 
 .calc__button:active,
 .calc__button:focus {
-    outline: none;
+  outline: none;
 }
 
 .calc__button--orange {
-    background: #FF8C00;
+  background: #ff8c00;
+}
+
+.calc__button__container {
+  width: 354px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.calc__button__row {
+}
+
+.calc__button .calc__button--higher {
+  height: 178px;
+}
+
+.calc__button--wider {
+  width: 178px;
 }
