@@ -57,6 +57,15 @@
   flex-flow: wrap;
 }
 
+.column {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.column > * {
+  flex: 0 0 200%;
+}
+
 .calc__button--higher {
 }
 
