@@ -2,9 +2,7 @@
   height: 88.5px;
   width: 88.5px;
   background: #e8e8e8;
-  border: 2px solid #000000;
-  border-right: 1px solid #000000;
-  border-left: 1px solid #000000;
+  border: 1px solid #000000;
   box-sizing: border-box;
   font-style: normal;
   font-weight: bold;
@@ -19,26 +17,9 @@
   width: 88.5px;
 }
 
-.calc__button:first-child {
-  border-left: 2px solid #000000;
-}
-.calc__button:first-child:hover {
-  border-left: 2px solid #000000;
-}
-
-.calc__button:last-child {
-  border-right: 2px solid #000000;
-}
-
-.calc__button:last-child:hover {
-  border-right: 2px solid #000000;
-}
-
 .calc__button:hover {
   background: #bababa;
-  border: 2px solid #000000;
-  border-right: 1px solid #000000;
-  border-left: 1px solid #000000;
+  border: 1px solid #000000;
   box-sizing: border-box;
 }
 
@@ -49,6 +30,10 @@
 
 .calc__button--orange {
   background: #ff8c00;
+}
+
+.calc__button--orange:hover {
+  background: #d47400;
 }
 
 .calc__button__container {
