@@ -1,20 +1,19 @@
 .calc__sum {
-  background-color: #000;
-  width: 354px;
-  height: 196px;
-  display: flex;
-}
-
-.calc__sum__text {
-  margin: 10px;
-  display: flex;
-  width: 100%;
-  align-items: flex-end;
-  justify-content: flex-end;
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: bold;
-  line-height: 45px;
-  font-size: 48px;
-  color: #e8e8e8;
+	background-color: #000;
+	width: 354px;
+	height: 196px;
+	display: flex;
+	&__text {
+		margin: 10px;
+		display: flex;
+		width: 100%;
+		align-items: flex-end;
+		justify-content: flex-end;
+		font-family: "Roboto";
+		font-style: normal;
+		font-weight: bold;
+		line-height: 45px;
+		font-size: 48px;
+		color: #e8e8e8;
+	}
 }

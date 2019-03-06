@@ -1,59 +1,54 @@
+$mainColor: #e8e8e8;
+$mainColorHover: #bababa;
+$secondaryColor: #ff8c00;
+$secondaryColorHover: #d47400;
+
 .calc__button {
-  height: 88.5px;
-  width: 88.5px;
-  background: #e8e8e8;
-  border: 1px solid #000000;
-  box-sizing: border-box;
-  font-style: normal;
-  font-weight: bold;
-  line-height: normal;
-  font-size: 48px;
-  cursor: pointer;
-  overflow: hidden;
-  flex: 0 0 25%;
-}
-
-.calc__button--equal {
-  width: 88.5px;
-}
-
-.calc__button:hover {
-  background: #bababa;
-  border: 1px solid #000000;
-  box-sizing: border-box;
-}
-
-.calc__button:active,
-.calc__button:focus {
-  outline: none;
-}
-
-.calc__button--orange {
-  background: #ff8c00;
-}
-
-.calc__button--orange:hover {
-  background: #d47400;
-}
-
-.calc__button__container {
-  width: 354px;
-  display: flex;
-  flex-flow: wrap;
+	height: 88.5px;
+	width: 88.5px;
+	background: $mainColor;
+	border: 1px solid #000000;
+	box-sizing: border-box;
+	font-style: normal;
+	font-weight: bold;
+	line-height: normal;
+	font-size: 48px;
+	cursor: pointer;
+	overflow: hidden;
+	flex: 0 0 25%;
+	&:hover {
+		background: $mainColorHover;
+		border: 1px solid #000000;
+		box-sizing: border-box;
+	}
+	&:active,
+	&:focus {
+		outline: none;
+	}
+	&__container {
+		width: 354px;
+		display: flex;
+		flex-flow: wrap;
+	}
+	&--equal {
+		width: 88.5px;
+	}
+	&--orange {
+		background: $secondaryColor;
+	}
+	&--orange:hover {
+		background: $secondaryColorHover;
+	}
+	&--wider {
+		flex: 0 1 50%;
+	}
 }
 
 .column {
-  display: flex;
-  flex-flow: column wrap;
+	display: flex;
+	flex-flow: column wrap;
 }
 
 .column > * {
-  flex: 0 0 200%;
-}
-
-.calc__button--higher {
-}
-
-.calc__button--wider {
-  flex: 0 1 50%;
+	flex: 0 0 200%;
 }

@@ -46,19 +46,19 @@ class Calc extends Component {
 
   handleToMinus = () => {
     const substring = "-";
-    const result = this.state.result;
+    const { result } = this.state;
 
     if (result === "") {
       this.setState({
         result: result
       });
-    } else if (!result.includes(substring)) {
-      this.setState({
-        result: "-" + result
-      });
     } else if (result.charAt(0) === "-") {
       this.setState({
         result: result.substring(1)
+      });
+    } else if (!result.includes(substring)) {
+      this.setState({
+        result: "-" + result
       });
     }
   };
