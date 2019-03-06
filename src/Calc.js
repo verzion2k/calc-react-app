@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import CalcSum from "./CalcSum";
+import CalcDisplay from "./CalcDisplay";
 import CalcButtonList from "./CalcButtonList";
 import "./Calc.scss";
+import * as math from "mathjs";
 
 class Calc extends Component {
   constructor(props) {
@@ -12,65 +13,61 @@ class Calc extends Component {
   }
 
   handleOnClick = button => {
-
-    if(button === "="){
-        this.handleOnEqual()
-    }
-
-    else if(button === "clear"){
-        this.handleDelete()
-    }
-    else if(button === "toMinus"){
-        this.handleToMinus()
-    }
-
-    else {
-      this.setState({
-        result: this.state.result + button
-      })
-    }
-};
-
-  handleOnEqual = () => {
-      try {
-        this.setState({
-          result: (eval(this.state.result) || "" ) + ""
-        })
-    } catch (e) {
-        this.setState({
-            result: "error"
-        })
-    }
-  }
-
-handleDelete = () => {
-    this.setState({
-        result: ""
-    })
-};
-
-handleToMinus = () => {
-  const substring = "-";
-    if(this.state.result === "") {
-      this.setState({
-        result: this.state.result
-    })
-    } else if (!this.state.result.includes(substring)){
-      this.setState({
-        result: "-" + this.state.result
-    })
+    if (button === "=") {
+      this.handleOnEqual();
+    } else if (button === "clear") {
+      this.handleDelete();
+    } else if (button === "toMinus") {
+      this.handleToMinus();
     } else {
       this.setState({
-        result: this.state.result.replace(substring, "")
-    })
+        result: this.state.result + button
+      });
     }
-};
+  };
+
+  handleOnEqual = () => {
+    try {
+      this.setState({
+        result: (math.eval(this.state.result) || "") + ""
+      });
+    } catch (e) {
+      this.setState({
+        result: "error"
+      });
+    }
+  };
+
+  handleDelete = () => {
+    this.setState({
+      result: ""
+    });
+  };
+
+  handleToMinus = () => {
+    const substring = "-";
+    const result = this.state.result;
+
+    if (result === "") {
+      this.setState({
+        result: result
+      });
+    } else if (!result.includes(substring)) {
+      this.setState({
+        result: "-" + result
+      });
+    } else if (result.charAt(0) === "-") {
+      this.setState({
+        result: result.substring(1)
+      });
+    }
+  };
 
   render() {
     return (
       <div className="calc__wrapper">
-        <CalcSum result={this.state.result}/>
-        <CalcButtonList handleOnClick={this.handleOnClick}/>
+        <CalcDisplay result={this.state.result} />
+        <CalcButtonList handleOnClick={this.handleOnClick} />
       </div>
     );
   }
