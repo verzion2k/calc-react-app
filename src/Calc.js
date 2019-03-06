@@ -14,46 +14,56 @@ class Calc extends Component {
   handleOnClick = button => {
 
     if(button === "="){
-        this.calculate()
+        this.handleOnEqual()
     }
 
     else if(button === "clear"){
-        this.deleteAll()
+        this.handleDelete()
     }
     else if(button === "toMinus"){
-        this.deleteLastItem()
+        this.handleToMinus()
     }
 
     else {
-        this.setState({
-            result: this.state.result + button
-        })
+      this.setState({
+        result: this.state.result + button
+      })
     }
 };
 
-  calculate = () => {
-    try {
+  handleOnEqual = () => {
+      try {
         this.setState({
-            result: (eval(this.state.result) || "" ) + ""
+          result: (eval(this.state.result) || "" ) + ""
         })
     } catch (e) {
         this.setState({
             result: "error"
         })
-
     }
-};
+  }
 
-deleteAll = () => {
+handleDelete = () => {
     this.setState({
         result: ""
     })
 };
 
-deleteLastItem = () => {
-    this.setState({
-        result: this.state.result.slice(0, -1)
+handleToMinus = () => {
+  const substring = "-";
+    if(this.state.result === "") {
+      this.setState({
+        result: this.state.result
     })
+    } else if (!this.state.result.includes(substring)){
+      this.setState({
+        result: "-" + this.state.result
+    })
+    } else {
+      this.setState({
+        result: this.state.result.replace(substring, "")
+    })
+    }
 };
 
   render() {
