@@ -1,76 +1,76 @@
-import React, { Component } from "react";
-import CalcDisplay from "./CalcDisplay";
-import CalcButtonList from "./CalcButtonList";
-import "./Calc.scss";
-import * as math from "mathjs";
+import React, { Component } from 'react';
+import CalcDisplay from './CalcDisplay';
+import CalcButtonList from './CalcButtonList';
+import './Calc.scss';
+import * as math from 'mathjs';
 
 class Calc extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      result: ""
-    };
-  }
+	constructor(props) {
+		super(props);
+		this.state = {
+			result: ''
+		};
+	}
 
-  handleOnClick = button => {
-    if (button === "=") {
-      this.handleOnEqual();
-    } else if (button === "clear") {
-      this.handleDelete();
-    } else if (button === "toMinus") {
-      this.handleToMinus();
-    } else {
-      this.setState({
-        result: this.state.result + button
-      });
-    }
-  };
+	handleOnClick = (button) => {
+		if (button === '=') {
+			this.handleOnEqual();
+		} else if (button === 'clear') {
+			this.handleDelete();
+		} else if (button === 'toMinus') {
+			this.handleToMinus();
+		} else {
+			this.setState({
+				result: this.state.result + button
+			});
+		}
+	};
 
-  handleOnEqual = () => {
-    try {
-      this.setState({
-        result: (math.eval(this.state.result) || "") + ""
-      });
-    } catch (e) {
-      this.setState({
-        result: "error"
-      });
-    }
-  };
+	handleOnEqual = () => {
+		try {
+			this.setState({
+				result: (math.eval(this.state.result) || '') + ''
+			});
+		} catch (e) {
+			this.setState({
+				result: 'error'
+			});
+		}
+	};
 
-  handleDelete = () => {
-    this.setState({
-      result: ""
-    });
-  };
+	handleDelete = () => {
+		this.setState({
+			result: ''
+		});
+	};
 
-  handleToMinus = () => {
-    const substring = "-";
-    const { result } = this.state;
+	handleToMinus = () => {
+		const substring = '-';
+		const { result } = this.state;
 
-    if (result === "") {
-      this.setState({
-        result: result
-      });
-    } else if (result.charAt(0) === "-") {
-      this.setState({
-        result: result.substring(1)
-      });
-    } else if (!result.includes(substring)) {
-      this.setState({
-        result: "-" + result
-      });
-    }
-  };
+		if (result === '') {
+			this.setState({
+				result: result
+			});
+		} else if (result.charAt(0) === '-') {
+			this.setState({
+				result: result.substring(1)
+			});
+		} else if (!result.includes(substring)) {
+			this.setState({
+				result: '-' + result
+			});
+		}
+	};
 
-  render() {
-    return (
-      <div className="calc__wrapper">
-        <CalcDisplay result={this.state.result} />
-        <CalcButtonList handleOnClick={this.handleOnClick} />
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div className="calc__wrapper">
+				<CalcDisplay result={this.state.result} />
+				<CalcButtonList handleOnClick={this.handleOnClick} result={this.state.result} />
+			</div>
+		);
+	}
 }
 
 export default Calc;
