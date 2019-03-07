@@ -3,16 +3,28 @@ import './CalcButtonList.scss';
 
 class CalcButtonList extends Component {
 	render() {
+		const { displayValue } = this.props;
 		return (
 			<div>
 				<div className="calc__button__container">
-					<button
-						className="calc__button calc__button--orange"
-						name="clear"
-						onClick={() => this.props.clearDisplay()}
-					>
-						C
-					</button>
+					{displayValue === '0' ? (
+						<button
+							className="calc__button calc__button--orange"
+							name="clear"
+							onClick={() => this.props.clearDisplay()}
+						>
+							AC
+						</button>
+					) : (
+						<button
+							className="calc__button calc__button--orange"
+							name="clear"
+							onClick={() => this.props.clearDisplay()}
+						>
+							C
+						</button>
+					)}
+
 					<button
 						className="calc__button calc__button--orange"
 						name="toMinus"
