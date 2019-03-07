@@ -11,7 +11,7 @@ class CalcButtonList extends Component {
 						<button
 							className="calc__button calc__button--orange"
 							name="clear"
-							onClick={() => this.props.clearDisplay()}
+							onClick={() => this.props.clearAll()}
 						>
 							AC
 						</button>

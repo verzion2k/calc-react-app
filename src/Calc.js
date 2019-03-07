@@ -45,6 +45,15 @@ class Calc extends Component {
 		}
 	};
 
+	clearAll = () => {
+		this.setState({
+			displayValue: '0',
+			value: null,
+			waitingForOperand: false,
+			operator: null
+		});
+	};
+
 	clearDisplay = () => {
 		this.setState({
 			displayValue: '0'
@@ -95,6 +104,7 @@ class Calc extends Component {
 	render() {
 		return (
 			<div className="calc__wrapper">
+				<pre>{JSON.stringify(this.state, null, 2)}</pre>
 				<CalcDisplay displayValue={this.state.displayValue} />
 				<CalcButtonList
 					inputDigit={this.inputDigit}
@@ -103,6 +113,7 @@ class Calc extends Component {
 					clearDisplay={this.clearDisplay}
 					toggleSign={this.toggleSign}
 					performOperation={this.performOperation}
+					clearAll={this.clearAll}
 				/>
 			</div>
 		);
