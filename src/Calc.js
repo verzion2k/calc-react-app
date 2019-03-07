@@ -2,72 +2,108 @@ import React, { Component } from 'react';
 import CalcDisplay from './CalcDisplay';
 import CalcButtonList from './CalcButtonList';
 import './Calc.scss';
-import * as math from 'mathjs';
 
 class Calc extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			result: ''
+			value: null,
+			displayValue: '0',
+			waitingForOperand: false,
+			operator: null
 		};
 	}
 
-	handleOnClick = (button) => {
-		if (button === '=') {
-			this.handleOnEqual();
-		} else if (button === 'clear') {
-			this.handleDelete();
-		} else if (button === 'toMinus') {
-			this.handleToMinus();
+	inputDigit = (digit) => {
+		const { displayValue, waitingForOperand } = this.state;
+
+		if (waitingForOperand) {
+			this.setState({
+				displayValue: String(digit),
+				waitingForOperand: false
+			});
 		} else {
 			this.setState({
-				result: this.state.result + button
+				displayValue: displayValue === '0' ? String(digit) : displayValue + digit
 			});
 		}
 	};
 
-	handleOnEqual = () => {
-		try {
+	inputDot = () => {
+		const { displayValue, waitingForOperand } = this.state;
+
+		if (waitingForOperand) {
 			this.setState({
-				result: (math.eval(this.state.result) || '') + ''
+				displayValue: '.',
+				waitingForOperand: false
 			});
-		} catch (e) {
+		} else if (displayValue.indexOf('.') === -1) {
 			this.setState({
-				result: 'error'
+				displayValue: displayValue + '.',
+				waitingForOperand: false
 			});
 		}
 	};
 
-	handleDelete = () => {
+	clearDisplay = () => {
 		this.setState({
-			result: ''
+			displayValue: '0'
 		});
 	};
 
-	handleToMinus = () => {
-		const substring = '-';
-		const { result } = this.state;
+	toggleSign = () => {
+		const { displayValue } = this.state;
 
-		if (result === '') {
+		this.setState({
+			displayValue: displayValue.charAt(0) === '-' ? displayValue.substr(1) : '-' + displayValue
+		});
+	};
+
+	performOperation = (nextOperator) => {
+		const { displayValue, operator, value } = this.state;
+
+		const nextValue = parseFloat(displayValue);
+
+		const operations = {
+			'/': (prevValue, nextValue) => prevValue / nextValue,
+			'*': (prevValue, nextValue) => prevValue * nextValue,
+			'+': (prevValue, nextValue) => prevValue + nextValue,
+			'-': (prevValue, nextValue) => prevValue - nextValue,
+			'=': (prevValue, nextValue) => nextValue
+		};
+
+		if (value == null) {
 			this.setState({
-				result: result
+				value: nextValue
 			});
-		} else if (result.charAt(0) === '-') {
+		} else if (operator) {
+			const currentValue = value || 0;
+			const computedValue = operations[operator](currentValue, nextValue);
+
 			this.setState({
-				result: result.substring(1)
-			});
-		} else if (!result.includes(substring)) {
-			this.setState({
-				result: '-' + result
+				value: computedValue,
+				displayValue: String(computedValue)
 			});
 		}
+
+		this.setState({
+			waitingForOperand: true,
+			operator: nextOperator
+		});
 	};
 
 	render() {
 		return (
 			<div className="calc__wrapper">
-				<CalcDisplay result={this.state.result} />
-				<CalcButtonList handleOnClick={this.handleOnClick} result={this.state.result} />
+				<CalcDisplay displayValue={this.state.displayValue} />
+				<CalcButtonList
+					inputDigit={this.inputDigit}
+					displayValue={this.state.displayValue}
+					inputDot={this.inputDot}
+					clearDisplay={this.clearDisplay}
+					toggleSign={this.toggleSign}
+					performOperation={this.performOperation}
+				/>
 			</div>
 		);
 	}
